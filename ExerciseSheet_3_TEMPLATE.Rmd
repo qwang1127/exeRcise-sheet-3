@@ -109,6 +109,17 @@ While replacing non-numeric values with an approximation and handling NA values 
 
 c)  Calculate the total number of babies born in Munich in 2022
     and 2023. Which year had the bigger baby-boom?
+    
+```{r}
+library(tidyverse)
+
+vornamen_2022 %>% 
+  summarise(total = sum(Anzahl))
+
+vornamen_2023 %>% 
+  summarise(total = sum(Anzahl))
+```
+The total number of babies born in Munich in 2022 is 9899, while in 2023 it is 24229. Therefore, 2023 had the bigger baby boom.
 
 d)  Add a new column `year` to both datasets which holds the correct
     year for each.
