@@ -100,6 +100,7 @@ str(vornamen_2023)
 # Fix the problem
 # Replacing NA values with 0
 vornamen_2022$Anzahl[is.na(vornamen_2022$Anzahl)] <- 0
+vornamen_2022$Anzahl <- as.numeric(vornamen_2022$Anzahl)
 # Replace non-numeric values "4 oder weniger" with 4 and convert to numeric
 vornamen_2023$Anzahl <- as.numeric(ifelse(vornamen_2023$Anzahl == "4 oder weniger", 4, vornamen_2023$Anzahl))
 ```
