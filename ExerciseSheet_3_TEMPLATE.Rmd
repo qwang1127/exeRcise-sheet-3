@@ -88,6 +88,25 @@ b)  Load the data for both years into R. Check the type of the count
     some of the counts are inaccurate because of this. Explain your
     solution and the repercussions.
 
+```{r}
+vornamen_2022 <- read.csv("data/open_data_portal_2022.csv")
+vornamen_2023 <- read.csv("data/vornamen-muenchen-2023.csv")
+
+str(vornamen_2022)
+str(vornamen_2023)
+# The type of the count variable ("Anzahl") is character.
+# In the data of 2022, there are NA values; in the data of 2023, there are non-numeric values "4 oder weniger".
+
+# Fix the problem
+# Replacing NA values with 0
+vornamen_2022$Anzahl[is.na(vornamen_2022$Anzahl)] <- 0
+# Replace non-numeric values "4 oder weniger" with 4 and convert to numeric
+vornamen_2023$Anzahl <- as.numeric(ifelse(vornamen_2023$Anzahl == "4 oder weniger", 4, vornamen_2023$Anzahl))
+```
+
+Repercussions:
+While replacing non-numeric values with an approximation and handling NA values with 0 helps in ensuring the data's integrity, it may lead to inaccurate counts. For instance, counts of "4 oder weniger" being replaced with 4 might not accurately represent the actual counts in some cases. The inaccuracies introduced by this approach could affect any subsequent analysis relying on the count variable.
+
 c)  Calculate the total number of babies born in Munich in 2022
     and 2023. Which year had the bigger baby-boom?
 
