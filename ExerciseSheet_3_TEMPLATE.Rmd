@@ -143,6 +143,16 @@ f)  Combine the counts for same names to determine the most popular
     names across both years. Print out the top 10 names in a nicely
     formatted table for both years. Include a table caption.
 
+```{r}
+vornamen_combined %>%
+  group_by(Vorname) %>%
+  summarise(total_count = sum(Anzahl)) %>% 
+  arrange(desc(total_count)) %>% 
+  slice_head(n = 10) %>% 
+  knitr::kable(caption = "Top 10 names in Munich in 2022 and 2023")
+```
+
+
 ## Exercise 4: Open Analysis (4 points)
 
 This exercise is a bit more open-ended. You can choose any dataset from
